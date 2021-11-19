@@ -8,7 +8,6 @@ def rearrange_digits(input_list):
        (int),(int): Two maximum sums
     """
     merge_sort(input_list)
-    print(input_list)
     count_1 = 0
     count_2 = 0
     first = 0
@@ -21,7 +20,6 @@ def rearrange_digits(input_list):
             second += element*10**count_2
             count_2 += 1
 
-    print(first, second)
     return [first, second]
 
 
@@ -76,3 +74,4 @@ def test_function(test_case):
 
 test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
+test_function([[0],[0,0]])

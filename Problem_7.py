@@ -125,9 +125,3 @@ print(router.lookup("/home/about"))  # should print 'about handler'
 print(router.lookup("/home/about/"))
 # should print 'not found handler' or None if you did not implement one
 print(router.lookup("/home/about/me"))
-router.add_handler("/home/about/read", "read handler")
-print(router.lookup("/home/about/read/"))
-print(router.lookup("/home/about"))
-router.add_handler("/new/waz/home/about/read/magazine", "magazine handler")
-print(router.route.root.children)
-print(router.lookup("/"))
