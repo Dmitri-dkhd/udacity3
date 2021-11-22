@@ -1,4 +1,6 @@
 def get_min_max(ints):
+    if not ints:
+        return None
     """
     Return a tuple(min, max) out of list of unsorted integers.
 
@@ -27,4 +29,18 @@ print(l)
 print ("Pass" if ((min(l), max(l)) == get_min_max(l)) else "Fail")
 random.shuffle(l)
 print(l)
+
 print ("Pass" if ((min(l), max(l)) == get_min_max(l)) else "Fail")
+
+if not get_min_max([]): #None
+    
+    print('Pass')
+else:
+    print('Fail')
+
+if not get_min_max(None): #None
+    print('Pass')
+else:
+    print('Fail')
+
+print ("Pass" if (0, 0) == get_min_max([0]) else "Fail")

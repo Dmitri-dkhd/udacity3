@@ -1,6 +1,8 @@
 import math
 def sqrt(number): 
     """ Calculate the floored square root of a number Args: number(int): Number to find the floored squared root Returns: int: Floored Square Root """ 
+    if type(number) != int:
+        return 'input error'
     if number <2:
         return number
     high=number
@@ -18,7 +20,7 @@ def sqrt(number):
         
     
         
-    
+print ("Pass" if ('input error' == sqrt(None)) else "Fail") 
 print ("Pass" if (3 == sqrt(9)) else "Fail") 
 print ("Pass" if (0 == sqrt(0)) else "Fail") 
 print ("Pass" if (4 == sqrt(16)) else "Fail") 

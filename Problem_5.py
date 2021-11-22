@@ -43,20 +43,25 @@ class Trie:
 
     def insert(self, word):
         # Add a word to the Trie
+        self.root.node = self.root.children
         for index, char in enumerate(word):
-
+            
             if index == len(word)-1:
                 self.root.is_word = True
-                if self.find(word[:index+1]):
-                    self.find(word[:index+1]).children['word end'] = True
+                
+                if self.root.node.get(char):
+                    self.root.node['word end'] = True
+                    continue
             else:
                 self.root.is_word = False
-            if self.find(word[:index+1]):
-                self.root.node = self.find(word[:index+1]).children
+            
+            if self.root.node.get(char):
+               
+                self.root.node = self.root.node[char]
                 continue
 
             self.root.insert(char)
-
+            
         self.root.node = None
 
     def find(self, prefix):
@@ -100,12 +105,14 @@ class TrieNode:
         new_char = new_char[char]
         self.node = self.node[char]
 
-    def suffixes(self, prefix=''):
+    def suffixes(self):
         # Recursive function that collects the suffix for
         # all complete words below this point
+        
         prefix = self.children
-        suffix_list = []
-
+        suffix_set = set()
+        if not prefix:
+            return None
         def get_suffix(prefix, suffix=''):
 
             for i in prefix:
@@ -116,13 +123,13 @@ class TrieNode:
                 suffix += i
 
                 if prefix[i]['word end'] == True:
-                    suffix_list.append(suffix)
+                    suffix_set.add(suffix)
 
                 get_suffix(prefix[i], suffix)
                 suffix = suffix[:-1]
 
         get_suffix(prefix)
-        return suffix_list
+        return suffix_set
 
 
 # # Testing it all out
@@ -159,4 +166,19 @@ def f(prefix):
     else:
         print('')
 interact(f,prefix='');
+
+
+prefixNode = MyTrie.find('a')#['nt', 'nthology', 'ntagonist', 'ntonym']
+print(prefixNode.suffixes())
+
+prefixNode = MyTrie.find('')#['ant', 'anthology', 'antagonist', 'antonym', 'fun', 'function', 'factory', 'trie', 'trigger', 'trigonometry', 'tripod']
+print(prefixNode.suffixes())
+
+
+for i in range(200):
+    MyTrie.insert(str(i))
+
+
+prefixNode = MyTrie.find('1') # all ints from 0 to 199 starting with '1' 
+print(prefixNode.suffixes())
 

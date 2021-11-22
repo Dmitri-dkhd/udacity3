@@ -7,6 +7,8 @@ def rotated_array_search(input_list, number):
     Returns:
        int: Index or -1
     """
+    if not input_list:
+        return -1
     mid = len(input_list)//2
     if input_list[mid] == number:
         return mid
@@ -20,6 +22,7 @@ def rotated_array_search(input_list, number):
             ans = binary_search(arr, number)
             if ans != -1:
                 ans += mid+1
+            
             return ans
         else:
             
@@ -30,12 +33,14 @@ def rotated_array_search(input_list, number):
             return -1
         if arr[0] <= number <= arr[-1]:
             ans = binary_search(arr, number)
+            
             return ans
         else:
             
             ans = rotated_array_search(input_list[mid+1:], number)
             if ans != -1:
                 ans += mid+1
+            
             return ans
 
 
@@ -44,9 +49,10 @@ def binary_search(arr, number):
         return 0
     low = 0
     high = len(arr)-1
-    while low < high:
+    while low <= high:
         
         mid = (high+low)//2
+        
         if arr[mid] == number:
             return mid
         elif arr[mid] < number:
@@ -59,6 +65,7 @@ def binary_search(arr, number):
 def linear_search(input_list, number):
     for index, element in enumerate(input_list):
         if element == number:
+            
             return index
     return -1
 
@@ -71,10 +78,12 @@ def test_function(test_case):
     else:
         print("Fail")
 
-
+test_function([[], None])
+test_function([[0], 4])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 5])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 4])
+test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4],7])
 test_function([[6, 7, 8, 1, 2, 3, 4], 8])
 test_function([[6, 7, 8, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8,  2, 3, 4], 10])
-test_function([[10000]+list(range(1000)), 998])
+test_function([list(range(10**6)), 998])

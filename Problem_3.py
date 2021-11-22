@@ -1,4 +1,6 @@
 def rearrange_digits(input_list):
+    if  not input_list:
+         return None
     """
     Rearrange Array Elements so as to form two number such that their sum is maximum.
 
@@ -19,7 +21,7 @@ def rearrange_digits(input_list):
         else:
             second += element*10**count_2
             count_2 += 1
-
+    print([first, second])
     return [first, second]
 
 
@@ -59,7 +61,7 @@ def merge_sort(arr):
             index += 1
         return arr
     merge(arr, left, right)
-
+    
     return arr
 
 
@@ -75,3 +77,5 @@ def test_function(test_case):
 test_function([[1, 2, 3, 4, 5], [542, 31]])
 test_function([[4, 6, 2, 5, 9, 8], [964, 852]])
 test_function([[0],[0,0]])
+test_function([[],[]])
+test_function([None,None])

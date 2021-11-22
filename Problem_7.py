@@ -95,8 +95,9 @@ class Router:
 
         if not path:
             return self.root_handler
-        if self.route.find(path):
-            return self.route.find(path)
+        found=self.route.find(path)
+        if found:
+            return found
         else:
             return self.error_handler
 
@@ -104,6 +105,8 @@ class Router:
         # you need to split the path into parts for
         # both the add_handler and loopup functions,
         # so it should be placed in a function here
+        if not path:
+            return path
         if path[-1] == '/':
             path = path[:-1]
         path = path.split('/')
@@ -125,3 +128,5 @@ print(router.lookup("/home/about"))  # should print 'about handler'
 print(router.lookup("/home/about/"))
 # should print 'not found handler' or None if you did not implement one
 print(router.lookup("/home/about/me"))
+print(router.lookup("")) # should print 'root handler'
+print(router.lookup(None))# should print 'root handler'

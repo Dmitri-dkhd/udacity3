@@ -1,12 +1,12 @@
-The method Trie.find() traverses through the prefix String and searches through the levels of the Trie until the last character of prefix und returns the corresponding dictionary.
-The time complexity is T(word).
+The method Trie.find() traverses through the prefix String with a for loop and searches through the levels of the Trie until the last character of prefix und returns the corresponding dictionary.
+The time complexity is O(word) and space complexity is O(1).
 
-Trie.insert uses Trie.find to check if the new word is in the root as part of the saved words and sets the new 'word ends'.
-Also insert the new chars to the root.
-The time complexity is T(word * word).
+Trie.insert traverses through the prefix String with a for loop  if the new word is in the root as part of the saved words and sets the new 'word ends'.
+Also insert the new chars to the root with TrieNode.insert.
+The time complexity for traversing the word is O(word) and Space complexity is O(n) for adding new entries to the dict.
 
 TrieNode.suffixes() method appends all possible suffixes of the given
-node to a list.
-The time complexity is T(n) where n is the number of dicts in the   TrieNode.
+node to a set. The set is the optimal data structure as all word or suffixes are unique for the prefix,also inserting is faster then with lists.
+The time complexity is O(n) where n is the number of dicts in the   TrieNode. Space complexity is O(n) for all n possible suffixes equal to the dicts in root.children.
 
 The overall time complexity is O(n) for traversing the TrieNode (n = number of dicts) same as the space complexity because of the dict data structure. 

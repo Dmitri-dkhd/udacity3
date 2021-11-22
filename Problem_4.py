@@ -51,3 +51,7 @@ test_function(test_case)
 
 test_case = []
 test_function(test_case) #[]
+
+test_case = [0]
+test_function(test_case) #[0]
+
