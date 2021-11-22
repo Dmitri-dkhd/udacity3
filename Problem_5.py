@@ -14,7 +14,6 @@
 # In[1]:
 
 
-# Represents a single node in the Trie
 class TrieNode:
     def __init__(self):
         self.node = None
@@ -27,12 +26,39 @@ class TrieNode:
         if not self.node:
             self.node = self.children
 
+        new_char = self.node
         if self.is_word == False:
-            self.node[char] = {'word end': False}
+            new_char[char] = {'word end': False}
         else:
-            self.node[char] = {'word end': True}
-
+            new_char[char] = {'word end': True}
+        new_char = new_char[char]
         self.node = self.node[char]
+
+    def suffixes(self):
+        # Recursive function that collects the suffix for
+        # all complete words below this point
+        
+        prefix = self.children
+        suffix_set = set()
+        if not prefix:
+            return None
+        def get_suffix(prefix, suffix=''):
+
+            for i in prefix:
+
+                if len(i) > 1:
+                    continue
+
+                suffix += i
+
+                if prefix[i]['word end'] == True:
+                    suffix_set.add(suffix)
+
+                get_suffix(prefix[i], suffix)
+                suffix = suffix[:-1]
+
+        get_suffix(prefix)
+        return suffix_set
 
 
 # The Trie itself containing the root node and insert/find functions
@@ -85,51 +111,6 @@ class Trie:
 # In[2]:
 
 
-class TrieNode:
-    def __init__(self):
-        self.node = None
-        self.is_word = False
-        self.children = {}
-        # Initialize this node in the Trie
-
-    def insert(self, char):
-        # Add a child node in this Trie
-        if not self.node:
-            self.node = self.children
-
-        new_char = self.node
-        if self.is_word == False:
-            new_char[char] = {'word end': False}
-        else:
-            new_char[char] = {'word end': True}
-        new_char = new_char[char]
-        self.node = self.node[char]
-
-    def suffixes(self):
-        # Recursive function that collects the suffix for
-        # all complete words below this point
-        
-        prefix = self.children
-        suffix_set = set()
-        if not prefix:
-            return None
-        def get_suffix(prefix, suffix=''):
-
-            for i in prefix:
-
-                if len(i) > 1:
-                    continue
-
-                suffix += i
-
-                if prefix[i]['word end'] == True:
-                    suffix_set.add(suffix)
-
-                get_suffix(prefix[i], suffix)
-                suffix = suffix[:-1]
-
-        get_suffix(prefix)
-        return suffix_set
 
 
 # # Testing it all out
