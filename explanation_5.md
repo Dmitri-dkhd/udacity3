@@ -3,7 +3,7 @@ TrieNode.insert takes O(1) for time and space.
 
 Trie.__init__ takes constant time and space.
 The method Trie.find() traverses through the prefix String with a for loop and searches through the levels of the Trie until the last character of prefix und returns the corresponding dictionary.
-The time complexity is O(word) and space complexity is O(1).
+The time complexity of find() is O(n) and space complexity is O(1).
 
 Trie.insert traverses through the prefix String with a for loop  if the new word is in the root as part of the saved words and sets the new 'word ends'.
 Also insert the new chars to the root with TrieNode.insert.
